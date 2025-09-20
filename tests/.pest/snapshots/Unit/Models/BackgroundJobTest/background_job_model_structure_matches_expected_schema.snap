@@ -1,0 +1,13 @@
+{
+    "job_type": "test_job",
+    "zabbix_connection_id": 1,
+    "parameters": {
+        "key": "value"
+    },
+    "status": "pending",
+    "progress_percentage": 0,
+    "started_at": null,
+    "completed_at": null,
+    "error_message": null,
+    "result_data": null
+}

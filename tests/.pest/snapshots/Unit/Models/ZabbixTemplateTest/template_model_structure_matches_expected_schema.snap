@@ -1,0 +1,12 @@
+{
+    "zabbix_connection_id": 1,
+    "template_id": "template-123",
+    "name": "Test Template",
+    "description": "Test Template Description",
+    "template_type": "custom",
+    "items_count": 10,
+    "triggers_count": 5,
+    "history_retention": "30d",
+    "trends_retention": "365d",
+    "is_optimized": false
+}

@@ -1,0 +1,13 @@
+{
+    "zabbix_connection_id": 1,
+    "host_id": "host-123",
+    "host_name": "Test Host",
+    "visible_name": "Test Host Visible",
+    "ip_address": "192.168.1.1",
+    "status": "enabled",
+    "available": "available",
+    "templates_count": 5,
+    "items_count": 100,
+    "last_check": "2025-01-01T00:00:00.000000Z",
+    "last_sync": "2025-01-01T00:00:00.000000Z"
+}

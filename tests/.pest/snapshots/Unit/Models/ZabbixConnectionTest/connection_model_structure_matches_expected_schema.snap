@@ -1,0 +1,10 @@
+{
+    "name": "Test Connection",
+    "description": "Test Description",
+    "url": "http:\/\/test.zabbix.com",
+    "environment": "local",
+    "is_active": true,
+    "max_requests_per_minute": 60,
+    "timeout_seconds": 30,
+    "connection_status": "active"
+}
