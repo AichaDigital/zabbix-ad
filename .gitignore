@@ -25,3 +25,6 @@ Thumbs.db
 .cursor/
 .editorconfig
 .junie/
+build/
+dist/
+coverage/

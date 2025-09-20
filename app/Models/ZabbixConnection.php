@@ -48,8 +48,10 @@ class ZabbixConnection extends Model
     protected function token(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->encrypted_token,
-            set: fn ($value) => $this->attributes['encrypted_token'] = $value,
+            get: fn () => $this->attributes['encrypted_token'] ?? null,
+            set: fn ($value) => [
+                'encrypted_token' => $value,
+            ],
         );
     }
 

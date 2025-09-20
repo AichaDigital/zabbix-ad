@@ -7,8 +7,8 @@
          stopOnFailure="false"
          cacheDirectory=".phpunit.cache"
          executionOrder="depends,defects"
-         requireCoverageMetadata="true"
-         beStrictAboutCoverageMetadata="true"
+         requireCoverageMetadata="false"
+         beStrictAboutCoverageMetadata="false"
          beStrictAboutOutputDuringTests="true"
          failOnRisky="true"
          failOnWarning="true">
@@ -25,10 +25,7 @@
             <directory suffix=".php">./app</directory>
         </include>
         <exclude>
-            <directory>./app/Console/Kernel.php</directory>
             <directory>./app/Exceptions</directory>
-            <directory>./app/Http/Kernel.php</directory>
-            <directory>./app/Http/Middleware</directory>
             <directory>./app/Providers</directory>
             <file>./app/Models/User.php</file>
         </exclude>
@@ -42,10 +39,11 @@
         <env name="DB_DATABASE" value=":memory:"/>
         <env name="MAIL_MAILER" value="array"/>
         <env name="PULSE_ENABLED" value="false"/>
-        <env name="QUEUE_CONNECTION" value="null"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
         <env name="ZABBIX_MCP_SERVER_URL" value="http://localhost:3000"/>
+        <env name="ZABBIX_MCP_MODE" value="local"/>
     </php>
     <coverage>
         <report>

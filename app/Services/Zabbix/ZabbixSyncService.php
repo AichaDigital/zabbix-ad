@@ -23,6 +23,14 @@ class ZabbixSyncService
     }
 
     /**
+     * Allow injecting a custom MCP client (used by tests)
+     */
+    public function setClient(McpZabbixClient $client): void
+    {
+        $this->client = $client;
+    }
+
+    /**
      * Sync all data from Zabbix
      */
     /**

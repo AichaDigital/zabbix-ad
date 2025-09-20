@@ -7,11 +7,4 @@ parameters:
         - app
     ignoreErrors:
         - '#PHPDoc tag @var#'
-    excludePaths:
-        - app/Console/Kernel.php (?)
-        - app/Exceptions (?)
-        - app/Http/Kernel.php (?)
-        - app/Http/Middleware (?)
-        - app/Providers (?)
-        - app/Models/User.php (?)
     reportUnmatchedIgnoredErrors: false
