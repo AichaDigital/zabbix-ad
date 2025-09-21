@@ -6,7 +6,7 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.4",
         "filament/filament": "^4.0",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1"
@@ -60,6 +60,62 @@
         "test": [
             "@php artisan config:clear --ansi",
             "@php artisan test"
+        ],
+        "test-coverage": [
+            "@php artisan config:clear --ansi",
+            "XDEBUG_MODE=coverage php artisan test --coverage --min=80"
+        ],
+        "test-coverage-report": [
+            "@php artisan config:clear --ansi",
+            "XDEBUG_MODE=coverage php artisan test --coverage"
+        ],
+        "pint": [
+            "./vendor/bin/pint"
+        ],
+        "pint-test": [
+            "./vendor/bin/pint --test"
+        ],
+        "phpstan": [
+            "./vendor/bin/phpstan analyse --memory-limit=1G"
+        ],
+        "phpstan-baseline": [
+            "./vendor/bin/phpstan analyse --memory-limit=1G --generate-baseline"
+        ],
+        "check": [
+            "@pint-test",
+            "@phpstan",
+            "@test"
+        ],
+        "check-full": [
+            "@pint-test",
+            "@phpstan",
+            "@test-coverage"
+        ],
+        "test-ci": [
+            "@php artisan config:clear --ansi",
+            "@php artisan test --exclude-group=rabbitmq --exclude-group=integration --exclude-group=local"
+        ],
+        "test-ci-parallel": [
+            "@php artisan config:clear --ansi",
+            "@php artisan test --parallel --processes=2 --exclude-group=rabbitmq --exclude-group=integration --exclude-group=local --stop-on-failure"
+        ],
+        "test-local": [
+            "@php artisan config:clear --ansi",
+            "@php artisan test"
+        ],
+        "quality": [
+            "@syntax-check",
+            "@pint-test",
+            "@phpstan",
+            "@test-ci"
+        ],
+        "syntax-check": [
+            "./scripts/check-syntax.sh"
+        ],
+        "pre-commit": [
+            "@syntax-check",
+            "@pint",
+            "@test-local"
         ]
     },
     "extra": {

@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @extends Model<ZabbixHost>
- */
 class ZabbixHost extends Model
 {
     use HasFactory;
@@ -39,9 +36,8 @@ class ZabbixHost extends Model
 
     /**
      * Get the connection that owns this host
-     */
-    /**
-     * @return BelongsTo<ZabbixConnection, ZabbixHost>
+     *
+     * @return BelongsTo<ZabbixConnection, $this>
      */
     public function connection(): BelongsTo
     {
@@ -109,12 +105,15 @@ class ZabbixHost extends Model
      */
     public function getStatusColorAttribute(): string
     {
-        return match ($this->status) {
+        $map = [
             'enabled' => 'success',
             'disabled' => 'danger',
             'maintenance' => 'warning',
-            default => 'secondary',
-        };
+        ];
+
+        $status = (string) $this->status;
+
+        return $map[$status];
     }
 
     /**
@@ -122,12 +121,15 @@ class ZabbixHost extends Model
      */
     public function getAvailabilityColorAttribute(): string
     {
-        return match ($this->available) {
+        $map = [
             'available' => 'success',
             'unavailable' => 'danger',
             'unknown' => 'warning',
-            default => 'secondary',
-        };
+        ];
+
+        $availability = (string) $this->available;
+
+        return $map[$availability];
     }
 
     /**
@@ -140,6 +142,8 @@ class ZabbixHost extends Model
 
     /**
      * Get host health status
+     *
+     * @return array<string, mixed>
      */
     public function getHealthStatus(): array
     {
@@ -155,6 +159,8 @@ class ZabbixHost extends Model
 
     /**
      * Update host statistics
+     *
+     * @param  array<string, mixed>  $stats
      */
     public function updateStatistics(array $stats): void
     {

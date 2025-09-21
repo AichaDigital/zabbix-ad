@@ -32,9 +32,8 @@ class ZabbixSyncService
 
     /**
      * Sync all data from Zabbix
-     */
-    /**
-     * @return array<string, mixed>
+     *
+     * @return array{success: bool, results: array{templates: array{synced: int, errors: int}, hosts: array{synced: int, errors: int}}, execution_time_ms: int}
      */
     public function syncAll(): array
     {
@@ -60,7 +59,7 @@ class ZabbixSyncService
 
             DB::commit();
 
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log successful sync
             AuditLog::logSuccess(
@@ -68,7 +67,7 @@ class ZabbixSyncService
                 $this->connection->id,
                 'sync_all',
                 'zabbix_connection',
-                $this->connection->id,
+                (string) $this->connection->id,
                 null,
                 $results,
                 $executionTime
@@ -89,7 +88,7 @@ class ZabbixSyncService
         } catch (Exception $e) {
             DB::rollBack();
 
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log failed sync
             AuditLog::logFailure(
@@ -97,7 +96,7 @@ class ZabbixSyncService
                 $this->connection->id,
                 'sync_all',
                 'zabbix_connection',
-                $this->connection->id,
+                (string) $this->connection->id,
                 $e->getMessage(),
                 $executionTime
             );
@@ -114,9 +113,8 @@ class ZabbixSyncService
 
     /**
      * Sync templates from Zabbix
-     */
-    /**
-     * @return array<string, mixed>
+     *
+     * @return array{synced: int, errors: int}
      */
     public function syncTemplates(): array
     {
@@ -160,7 +158,7 @@ class ZabbixSyncService
      */
     private function syncTemplate(array $templateData): void
     {
-        $template = ZabbixTemplate::updateOrCreate(
+        ZabbixTemplate::updateOrCreate(
             [
                 'zabbix_connection_id' => $this->connection->id,
                 'template_id' => $templateData['templateid'],
@@ -181,9 +179,8 @@ class ZabbixSyncService
 
     /**
      * Sync hosts from Zabbix
-     */
-    /**
-     * @return array<string, mixed>
+     *
+     * @return array{synced: int, errors: int}
      */
     public function syncHosts(): array
     {
@@ -227,7 +224,7 @@ class ZabbixSyncService
      */
     private function syncHost(array $hostData): void
     {
-        $host = ZabbixHost::updateOrCreate(
+        ZabbixHost::updateOrCreate(
             [
                 'zabbix_connection_id' => $this->connection->id,
                 'host_id' => $hostData['hostid'],
@@ -236,11 +233,11 @@ class ZabbixSyncService
                 'host_name' => $hostData['host'] ?? '',
                 'visible_name' => $hostData['name'] ?? '',
                 'ip_address' => $this->extractIpAddress($hostData),
-                'status' => $this->mapHostStatus($hostData['status'] ?? 0),
-                'available' => $this->mapHostAvailability($hostData['available'] ?? 0),
-                'templates_count' => count($hostData['parentTemplates'] ?? []),
-                'items_count' => $hostData['items_count'] ?? 0,
-                'last_check' => $this->parseZabbixTimestamp($hostData['lastcheck'] ?? 0),
+                'status' => $this->mapHostStatus((int) ($hostData['status'] ?? 0)),
+                'available' => $this->mapHostAvailability((int) ($hostData['available'] ?? 0)),
+                'templates_count' => is_array($hostData['parentTemplates'] ?? null) ? count($hostData['parentTemplates']) : 0,
+                'items_count' => (int) ($hostData['items_count'] ?? 0),
+                'last_check' => $this->parseZabbixTimestamp((int) ($hostData['lastcheck'] ?? 0)),
                 'last_sync' => now(),
             ]
         );
@@ -267,7 +264,7 @@ class ZabbixSyncService
      */
     private function determineTemplateType(array $templateData): string
     {
-        $name = strtolower($templateData['name'] ?? '');
+        $name = strtolower((string) ($templateData['name'] ?? ''));
 
         if (str_contains($name, 'system') || str_contains($name, 'zabbix')) {
             return 'system';
@@ -290,8 +287,8 @@ class ZabbixSyncService
     {
         if (isset($hostData['interfaces']) && is_array($hostData['interfaces'])) {
             foreach ($hostData['interfaces'] as $interface) {
-                if (is_array($interface) && isset($interface['ip']) && ! empty($interface['ip'])) {
-                    return (string) $interface['ip'];
+                if (is_array($interface) && isset($interface['ip']) && is_string($interface['ip']) && $interface['ip'] !== '') {
+                    return $interface['ip'];
                 }
             }
         }

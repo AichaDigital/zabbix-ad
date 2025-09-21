@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @extends Model<AuditLog>
- */
 class AuditLog extends Model
 {
     use HasFactory;
@@ -40,9 +37,8 @@ class AuditLog extends Model
 
     /**
      * Get the user that performed the action
-     */
-    /**
-     * @return BelongsTo<User, AuditLog>
+     *
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
@@ -52,7 +48,7 @@ class AuditLog extends Model
     /**
      * Get the Zabbix connection
      *
-     * @return BelongsTo<ZabbixConnection, AuditLog>
+     * @return BelongsTo<ZabbixConnection, $this>
      */
     public function zabbixConnection(): BelongsTo
     {
@@ -61,8 +57,7 @@ class AuditLog extends Model
 
     /**
      * Scope for successful actions
-     */
-    /**
+     *
      * @param  Builder<AuditLog>  $query
      * @return Builder<AuditLog>
      */
@@ -73,8 +68,7 @@ class AuditLog extends Model
 
     /**
      * Scope for failed actions
-     */
-    /**
+     *
      * @param  Builder<AuditLog>  $query
      * @return Builder<AuditLog>
      */
@@ -85,8 +79,7 @@ class AuditLog extends Model
 
     /**
      * Scope for actions by type
-     */
-    /**
+     *
      * @param  Builder<AuditLog>  $query
      * @return Builder<AuditLog>
      */
@@ -97,8 +90,7 @@ class AuditLog extends Model
 
     /**
      * Scope for actions by resource type
-     */
-    /**
+     *
      * @param  Builder<AuditLog>  $query
      * @return Builder<AuditLog>
      */
@@ -109,8 +101,7 @@ class AuditLog extends Model
 
     /**
      * Scope for recent actions
-     */
-    /**
+     *
      * @param  Builder<AuditLog>  $query
      * @return Builder<AuditLog>
      */
@@ -124,12 +115,15 @@ class AuditLog extends Model
      */
     public function getStatusColorAttribute(): string
     {
-        return match ($this->status) {
+        $map = [
             'success' => 'success',
             'failed' => 'danger',
             'partial' => 'warning',
-            default => 'secondary',
-        };
+        ];
+
+        $status = (string) $this->status;
+
+        return $map[$status];
     }
 
     /**
@@ -146,6 +140,9 @@ class AuditLog extends Model
 
     /**
      * Log a successful action
+     *
+     * @param  array<string, mixed>|null  $oldValues
+     * @param  array<string, mixed>|null  $newValues
      */
     public static function logSuccess(
         int $userId,

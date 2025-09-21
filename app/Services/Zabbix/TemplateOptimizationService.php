@@ -23,10 +23,11 @@ class TemplateOptimizationService
 
     /**
      * Optimize a specific template
-     */
-    /**
+     *
      * @param  array<string, mixed>|null  $optimizationSettings
      * @return array<string, mixed>
+     *
+     * @throws Exception
      */
     public function optimizeTemplate(ZabbixTemplate $template, ?array $optimizationSettings = null): array
     {
@@ -50,7 +51,7 @@ class TemplateOptimizationService
             // Update template status
             $template->markAsOptimized();
 
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log successful optimization
             AuditLog::logSuccess(
@@ -58,7 +59,7 @@ class TemplateOptimizationService
                 $this->connection->id,
                 'optimize_template',
                 'zabbix_template',
-                $template->template_id,
+                (string) $template->template_id,
                 $analysis,
                 $result,
                 (int) $executionTime
@@ -91,7 +92,7 @@ class TemplateOptimizationService
                 $this->connection->id,
                 'optimize_template',
                 'zabbix_template',
-                $template->template_id,
+                (string) $template->template_id,
                 $e->getMessage(),
                 (int) $executionTime
             );
@@ -110,9 +111,10 @@ class TemplateOptimizationService
 
     /**
      * Optimize all templates that need optimization
-     */
-    /**
+     *
      * @return array<string, mixed>
+     *
+     * @throws Exception
      */
     public function optimizeAllTemplates(): array
     {
@@ -151,7 +153,7 @@ class TemplateOptimizationService
                 }
             }
 
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log batch optimization
             AuditLog::logSuccess(
@@ -159,10 +161,10 @@ class TemplateOptimizationService
                 $this->connection->id,
                 'optimize_all_templates',
                 'zabbix_connection',
-                $this->connection->id,
+                (string) $this->connection->id,
                 null,
                 $results,
-                (int) $executionTime
+                $executionTime
             );
 
             Log::info('Batch template optimization completed', [
@@ -211,7 +213,7 @@ class TemplateOptimizationService
                     'last_sync' => now(),
                 ]);
 
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log auto optimization
             AuditLog::logSuccess(
@@ -219,10 +221,10 @@ class TemplateOptimizationService
                 $this->connection->id,
                 'auto_optimize_all_templates',
                 'zabbix_connection',
-                $this->connection->id,
+                (string) $this->connection->id,
                 null,
                 $result,
-                (int) $executionTime
+                $executionTime
             );
 
             Log::info('Auto template optimization completed', [
@@ -238,7 +240,7 @@ class TemplateOptimizationService
             ];
 
         } catch (Exception $e) {
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log failed auto optimization
             AuditLog::logFailure(
@@ -246,9 +248,9 @@ class TemplateOptimizationService
                 $this->connection->id,
                 'auto_optimize_all_templates',
                 'zabbix_connection',
-                $this->connection->id,
+                (string) $this->connection->id,
                 $e->getMessage(),
-                (int) $executionTime
+                $executionTime
             );
 
             Log::error('Auto template optimization failed', [
@@ -263,6 +265,8 @@ class TemplateOptimizationService
 
     /**
      * Get optimization settings for a template
+     *
+     * @return array<string, mixed>
      */
     private function getOptimizationSettings(ZabbixTemplate $template): array
     {

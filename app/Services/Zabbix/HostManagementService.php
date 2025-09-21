@@ -22,6 +22,9 @@ class HostManagementService
 
     /**
      * Create a new host in Zabbix
+     *
+     * @param  array<string, mixed>  $hostData
+     * @return array<string, mixed>
      */
     public function createHost(array $hostData): array
     {
@@ -48,7 +51,7 @@ class HostManagementService
                 'last_sync' => now(),
             ]);
 
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log successful creation
             AuditLog::logSuccess(
@@ -77,7 +80,7 @@ class HostManagementService
             ];
 
         } catch (Exception $e) {
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log failed creation
             AuditLog::logFailure(
@@ -103,6 +106,9 @@ class HostManagementService
 
     /**
      * Create multiple hosts in batch
+     *
+     * @param  array<int, array<string, mixed>>  $hostsData
+     * @return array<string, mixed>
      */
     public function createHostsBatch(array $hostsData): array
     {
@@ -134,7 +140,7 @@ class HostManagementService
             }
         }
 
-        $executionTime = round((microtime(true) - $startTime) * 1000);
+        $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
         // Log batch creation
         AuditLog::logSuccess(
@@ -142,7 +148,7 @@ class HostManagementService
             $this->connection->id,
             'create_hosts_batch',
             'zabbix_connection',
-            $this->connection->id,
+            (string) $this->connection->id,
             null,
             $results,
             $executionTime
@@ -163,6 +169,8 @@ class HostManagementService
 
     /**
      * Update host statistics
+     *
+     * @return array<string, mixed>
      */
     public function updateHostStats(ZabbixHost $host): array
     {
@@ -193,6 +201,8 @@ class HostManagementService
 
     /**
      * Get host health status
+     *
+     * @return array<string, mixed>
      */
     public function getHostHealth(ZabbixHost $host): array
     {
@@ -219,11 +229,14 @@ class HostManagementService
 
     /**
      * Get hosts by status
+     *
+     * @return array<string, mixed>
      */
     public function getHostsByStatus(string $status): array
     {
         try {
             $hosts = $this->connection->hosts()
+                ->getQuery()
                 ->byStatus($status)
                 ->get();
 
@@ -247,11 +260,14 @@ class HostManagementService
 
     /**
      * Get hosts by availability
+     *
+     * @return array<string, mixed>
      */
     public function getHostsByAvailability(string $availability): array
     {
         try {
             $hosts = $this->connection->hosts()
+                ->getQuery()
                 ->byAvailability($availability)
                 ->get();
 
@@ -275,21 +291,23 @@ class HostManagementService
 
     /**
      * Get host statistics
+     *
+     * @return array<string, mixed>
      */
     public function getHostStats(): array
     {
         try {
-            $hosts = $this->connection->hosts();
+            $hostsQuery = $this->connection->hosts()->getQuery();
 
             return [
-                'total_hosts' => $hosts->count(),
-                'enabled_hosts' => $hosts->enabled()->count(),
-                'disabled_hosts' => $hosts->byStatus('disabled')->count(),
-                'maintenance_hosts' => $hosts->byStatus('maintenance')->count(),
-                'available_hosts' => $hosts->available()->count(),
-                'unavailable_hosts' => $hosts->byAvailability('unavailable')->count(),
-                'unknown_hosts' => $hosts->byAvailability('unknown')->count(),
-                'healthy_hosts' => $hosts->get()->filter(fn ($host) => $host->isHealthy())->count(),
+                'total_hosts' => $hostsQuery->count(),
+                'enabled_hosts' => $hostsQuery->enabled()->count(),
+                'disabled_hosts' => $hostsQuery->byStatus('disabled')->count(),
+                'maintenance_hosts' => $hostsQuery->byStatus('maintenance')->count(),
+                'available_hosts' => $hostsQuery->available()->count(),
+                'unavailable_hosts' => $hostsQuery->byAvailability('unavailable')->count(),
+                'unknown_hosts' => $hostsQuery->byAvailability('unknown')->count(),
+                'healthy_hosts' => $hostsQuery->get()->filter(fn (ZabbixHost $host) => $host->isHealthy())->count(),
             ];
 
         } catch (Exception $e) {
@@ -304,6 +322,8 @@ class HostManagementService
 
     /**
      * Validate host data
+     *
+     * @param  array<string, mixed>  $hostData
      */
     private function validateHostData(array $hostData): void
     {
@@ -335,6 +355,9 @@ class HostManagementService
 
     /**
      * Generate host data from template
+     *
+     * @param  array<string, mixed>  $templateData
+     * @return array<string, mixed>
      */
     public function generateHostDataFromTemplate(array $templateData): array
     {

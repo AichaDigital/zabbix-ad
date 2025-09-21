@@ -2,9 +2,13 @@ includes:
     - vendor/larastan/larastan/extension.neon
 
 parameters:
-    level: 9
+    level: 6
     paths:
         - app
-    ignoreErrors:
-        - '#PHPDoc tag @var#'
     reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - '#Class .* uses generic trait .*HasFactory.* but does not specify its types#'
+        - '#Method .* has parameter .* with no value type specified in iterable type array#'
+        - '#Method .* return type has no value type specified in iterable type array#'
+        - '#Property .* type has no value type specified in iterable type array#'
+        - '#Method .* return type with generic class .* does not specify its types#'

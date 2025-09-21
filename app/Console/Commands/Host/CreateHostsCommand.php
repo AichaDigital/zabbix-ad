@@ -97,12 +97,6 @@ class CreateHostsCommand extends Command
             $continue = $this->confirm('Add another host?');
         }
 
-        if (count($hostsData) === 0) {
-            $this->warn('No hosts to create.');
-
-            return self::SUCCESS;
-        }
-
         $this->info('Creating '.count($hostsData).' hosts...');
 
         if ($this->option('queue')) {

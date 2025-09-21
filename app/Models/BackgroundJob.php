@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @extends Model<BackgroundJob>
- */
 class BackgroundJob extends Model
 {
     use HasFactory;
@@ -36,9 +33,8 @@ class BackgroundJob extends Model
 
     /**
      * Get the Zabbix connection
-     */
-    /**
-     * @return BelongsTo<ZabbixConnection, BackgroundJob>
+     *
+     * @return BelongsTo<ZabbixConnection, $this>
      */
     public function zabbixConnection(): BelongsTo
     {
@@ -110,14 +106,17 @@ class BackgroundJob extends Model
      */
     public function getStatusColorAttribute(): string
     {
-        return match ($this->status) {
+        $map = [
             'pending' => 'secondary',
             'running' => 'primary',
             'completed' => 'success',
             'failed' => 'danger',
             'cancelled' => 'warning',
-            default => 'secondary',
-        };
+        ];
+
+        $status = (string) $this->status;
+
+        return $map[$status];
     }
 
     /**
@@ -157,6 +156,8 @@ class BackgroundJob extends Model
 
     /**
      * Update job progress
+     *
+     * @param  array<string, mixed>|null  $resultData
      */
     public function updateProgress(int $percentage, ?array $resultData = null): void
     {
@@ -168,6 +169,8 @@ class BackgroundJob extends Model
 
     /**
      * Mark job as completed
+     *
+     * @param  array<string, mixed>|null  $resultData
      */
     public function markAsCompleted(?array $resultData = null): void
     {
@@ -220,6 +223,8 @@ class BackgroundJob extends Model
 
     /**
      * Get job statistics
+     *
+     * @return array<string, mixed>
      */
     public function getStatistics(): array
     {

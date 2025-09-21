@@ -49,7 +49,7 @@ class TemplateManagementService
                 'last_sync' => now(),
             ]);
 
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log successful creation
             AuditLog::logSuccess(
@@ -78,7 +78,7 @@ class TemplateManagementService
             ];
 
         } catch (Exception $e) {
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log failed creation
             AuditLog::logFailure(
@@ -124,7 +124,7 @@ class TemplateManagementService
             // Create new template
             $result = $this->createTemplate($templateData);
 
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             // Log template creation from existing
             AuditLog::logSuccess(
@@ -153,7 +153,7 @@ class TemplateManagementService
             ];
 
         } catch (Exception $e) {
-            $executionTime = round((microtime(true) - $startTime) * 1000);
+            $executionTime = (int) round((microtime(true) - $startTime) * 1000);
 
             Log::error('Template creation from existing failed', [
                 'connection_id' => $this->connection->id,
@@ -367,7 +367,7 @@ class TemplateManagementService
      */
     private function isValidRetentionFormat(string $retention): bool
     {
-        return preg_match('/^\d+[dwMy]$/', $retention);
+        return (bool) preg_match('/^\d+[dwMy]$/', $retention);
     }
 
     /**

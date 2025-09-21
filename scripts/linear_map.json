@@ -1,0 +1,14 @@
+{
+  "teamId": "b6698557-fd9c-4e18-96e0-c5bc37f49e9f",
+  "mappings": [
+    {
+      "teamId": "b6698557-fd9c-4e18-96e0-c5bc37f49e9f",
+      "section": "### Integración Elasticsearch",
+      "projectName": "Observability/ELK",
+      "status": "Next",
+      "priority": "High",
+      "useParent": true,
+      "parentTitle": "Integración Elasticsearch"
+    }
+  ]
+}

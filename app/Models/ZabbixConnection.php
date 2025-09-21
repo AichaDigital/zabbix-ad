@@ -9,7 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
- * @extends Model<ZabbixConnection>
+ * Class ZabbixConnection
+ *
+ * Represents a connection to a Zabbix server, including various attributes related to
+ * configuration, performance, and connection status. The model also defines relationships
+ * and scopes to interact with associated templates, hosts, and logs, as well as utility methods
+ * for testing the connection and filtering data.
  */
 class ZabbixConnection extends Model
 {
@@ -44,6 +49,8 @@ class ZabbixConnection extends Model
 
     /**
      * Get the token attribute (decrypted)
+     *
+     * @return Attribute<?string, string|null>
      */
     protected function token(): Attribute
     {
@@ -57,9 +64,7 @@ class ZabbixConnection extends Model
 
     /**
      * Get the templates for this connection
-     */
-    /**
-     * @return HasMany<ZabbixTemplate>
+     * @return HasMany<ZabbixTemplate, $this>
      */
     public function templates(): HasMany
     {
@@ -69,7 +74,7 @@ class ZabbixConnection extends Model
     /**
      * Get the hosts for this connection
      *
-     * @return HasMany<ZabbixHost>
+     * @return HasMany<ZabbixHost, $this>
      */
     public function hosts(): HasMany
     {
@@ -79,7 +84,7 @@ class ZabbixConnection extends Model
     /**
      * Get the audit logs for this connection
      *
-     * @return HasMany<AuditLog>
+     * @return HasMany<AuditLog, $this>
      */
     public function auditLogs(): HasMany
     {
@@ -89,7 +94,7 @@ class ZabbixConnection extends Model
     /**
      * Get the background jobs for this connection
      *
-     * @return HasMany<BackgroundJob>
+     * @return HasMany<BackgroundJob, $this>
      */
     public function backgroundJobs(): HasMany
     {

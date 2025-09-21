@@ -1,0 +1,433 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Class App\\Models\\AuditLog uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:logSuccess\(\) has parameter \$newValues with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:logSuccess\(\) has parameter \$oldValues with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:scopeByAction\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:scopeByAction\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:scopeByResourceType\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:scopeByResourceType\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:scopeFailed\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:scopeFailed\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:scopeRecent\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:scopeRecent\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:scopeSuccessful\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:scopeSuccessful\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:user\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Method App\\Models\\AuditLog\:\:zabbixConnection\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/AuditLog.php
+
+		-
+			message: '#^Class App\\Models\\BackgroundJob uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/BackgroundJob.php
+
+		-
+			message: '#^Method App\\Models\\BackgroundJob\:\:getStatistics\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/BackgroundJob.php
+
+		-
+			message: '#^Method App\\Models\\BackgroundJob\:\:markAsCompleted\(\) has parameter \$resultData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/BackgroundJob.php
+
+		-
+			message: '#^Method App\\Models\\BackgroundJob\:\:updateProgress\(\) has parameter \$resultData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/BackgroundJob.php
+
+		-
+			message: '#^Method App\\Models\\BackgroundJob\:\:zabbixConnection\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/BackgroundJob.php
+
+		-
+			message: '#^Method App\\Models\\TemplateOptimizationRule\:\:getOptimizationSettings\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/TemplateOptimizationRule.php
+
+		-
+			message: '#^Method App\\Models\\TemplateOptimizationRule\:\:getPotentialSavings\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/TemplateOptimizationRule.php
+
+		-
+			message: '#^Method App\\Models\\TemplateOptimizationRule\:\:getSummary\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/TemplateOptimizationRule.php
+
+		-
+			message: '#^Method App\\Models\\TemplateOptimizationRule\:\:scopeActive\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/TemplateOptimizationRule.php
+
+		-
+			message: '#^Method App\\Models\\TemplateOptimizationRule\:\:scopeActive\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/TemplateOptimizationRule.php
+
+		-
+			message: '#^Method App\\Models\\TemplateOptimizationRule\:\:scopeByEnvironment\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/TemplateOptimizationRule.php
+
+		-
+			message: '#^Method App\\Models\\TemplateOptimizationRule\:\:scopeByEnvironment\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/TemplateOptimizationRule.php
+
+		-
+			message: '#^Method App\\Models\\TemplateOptimizationRule\:\:scopeMatchingTemplate\(\) has no return type specified\.$#'
+			identifier: missingType.return
+			count: 1
+			path: app/Models/TemplateOptimizationRule.php
+
+		-
+			message: '#^Method App\\Models\\TemplateOptimizationRule\:\:scopeMatchingTemplate\(\) has parameter \$query with no type specified\.$#'
+			identifier: missingType.parameter
+			count: 1
+			path: app/Models/TemplateOptimizationRule.php
+
+		-
+			message: '#^Class App\\Models\\ZabbixConnection uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ZabbixConnection.php
+
+		-
+			message: '#^Generic type Illuminate\\Database\\Eloquent\\Relations\\HasMany\<App\\Models\\ZabbixTemplate\> in PHPDoc tag @return does not specify all template types of class Illuminate\\Database\\Eloquent\\Relations\\HasMany\: TRelatedModel, TDeclaringModel$#'
+			identifier: generics.lessTypes
+			count: 1
+			path: app/Models/ZabbixConnection.php
+
+		-
+			message: '#^Method App\\Models\\ZabbixConnection\:\:templates\(\) should return Illuminate\\Database\\Eloquent\\Relations\\HasMany\<App\\Models\\ZabbixTemplate\> but returns Illuminate\\Database\\Eloquent\\Relations\\HasMany\<App\\Models\\ZabbixTemplate, \$this\(App\\Models\\ZabbixConnection\)\>\.$#'
+			identifier: return.type
+			count: 1
+			path: app/Models/ZabbixConnection.php
+
+		-
+			message: '#^Class App\\Models\\ZabbixHost uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ZabbixHost.php
+
+		-
+			message: '#^Method App\\Models\\ZabbixHost\:\:connection\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ZabbixHost.php
+
+		-
+			message: '#^Method App\\Models\\ZabbixHost\:\:getHealthStatus\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/ZabbixHost.php
+
+		-
+			message: '#^Method App\\Models\\ZabbixHost\:\:updateStatistics\(\) has parameter \$stats with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/ZabbixHost.php
+
+		-
+			message: '#^Class App\\Models\\ZabbixTemplate uses generic trait Illuminate\\Database\\Eloquent\\Factories\\HasFactory but does not specify its types\: TFactory$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ZabbixTemplate.php
+
+		-
+			message: '#^Method App\\Models\\ZabbixTemplate\:\:connection\(\) return type with generic class Illuminate\\Database\\Eloquent\\Relations\\BelongsTo does not specify its types\: TRelatedModel, TDeclaringModel$#'
+			identifier: missingType.generics
+			count: 1
+			path: app/Models/ZabbixTemplate.php
+
+		-
+			message: '#^Method App\\Models\\ZabbixTemplate\:\:getOptimizationPotential\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/ZabbixTemplate.php
+
+		-
+			message: '#^Method App\\Models\\ZabbixTemplate\:\:getStatistics\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Models/ZabbixTemplate.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:createHost\(\) has parameter \$hostData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:createHost\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:createHostsBatch\(\) has parameter \$hostsData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:createHostsBatch\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:generateHostDataFromTemplate\(\) has parameter \$templateData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:generateHostDataFromTemplate\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:getHostHealth\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:getHostStats\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:getHostsByAvailability\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:getHostsByStatus\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:updateHostStats\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\HostManagementService\:\:validateHostData\(\) has parameter \$hostData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/HostManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\McpZabbixClient\:\:analyzeTemplateHistoryTrends\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/McpZabbixClient.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\McpZabbixClient\:\:getHosts\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/McpZabbixClient.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\McpZabbixClient\:\:getTemplates\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/McpZabbixClient.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\McpZabbixClient\:\:testConnection\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/McpZabbixClient.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\McpZabbixClient\:\:updateAllTemplateHistoryTrendsAuto\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/McpZabbixClient.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\McpZabbixClient\:\:updateTemplateHistoryTrends\(\) has parameter \$optimizationSettings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/McpZabbixClient.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\McpZabbixClient\:\:updateTemplateHistoryTrends\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/McpZabbixClient.php
+
+		-
+			message: '#^Property App\\Services\\Zabbix\\McpZabbixClient\:\:\$defaultHeaders type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/McpZabbixClient.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:analyzeTemplateOptimization\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:calculateOptimizationPriority\(\) has parameter \$potential with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:createTemplate\(\) has parameter \$templateData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:createTemplate\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:createTemplateFromExisting\(\) has parameter \$newTemplateData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:createTemplateFromExisting\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:getTemplateRecommendations\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:getTemplateStats\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:getTemplatesByType\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:getTemplatesNeedingOptimization\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateManagementService\:\:validateTemplateData\(\) has parameter \$templateData with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateManagementService.php
+
+		-
+			message: '#^Method App\\Services\\Zabbix\\TemplateOptimizationService\:\:getOptimizationSettings\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: app/Services/Zabbix/TemplateOptimizationService.php

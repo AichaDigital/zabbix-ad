@@ -7,9 +7,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-/**
- * @extends Model<ZabbixTemplate>
- */
 class ZabbixTemplate extends Model
 {
     use HasFactory;
@@ -39,9 +36,8 @@ class ZabbixTemplate extends Model
 
     /**
      * Get the connection that owns this template
-     */
-    /**
-     * @return BelongsTo<ZabbixConnection, ZabbixTemplate>
+     *
+     * @return BelongsTo<ZabbixConnection, $this>
      */
     public function connection(): BelongsTo
     {
@@ -87,6 +83,8 @@ class ZabbixTemplate extends Model
 
     /**
      * Get optimization potential based on retention settings
+     *
+     * @return array<string, mixed>
      */
     public function getOptimizationPotential(): array
     {
@@ -141,6 +139,8 @@ class ZabbixTemplate extends Model
 
     /**
      * Get template statistics
+     *
+     * @return array<string, mixed>
      */
     public function getStatistics(): array
     {

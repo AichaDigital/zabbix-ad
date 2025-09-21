@@ -1,0 +1,132 @@
+{
+  "sections": {
+    "### Dashboard Admin (NODE_ROLE=admin)": {
+      "parentId": "1144954a-87b6-4e88-a99a-17d5e82554f4",
+      "items": {
+        "PARADA FRONTEND: Instalar y configurar DaisyUI v5 con Tailwind v4 (no tocar CSS aún)": "3c7fdf7e-134d-4395-b9c5-554c5e2b88b4",
+        "PARADA FRONTEND: Revisar compatibilidad y orden de estilos con Livewire Flux; ajustar imports si hay conflictos": "f18c3633-d7e8-44c8-9ef7-35acf122730c",
+        "PARADA FRONTEND: Definir temas (light/dark) y guía de uso de componentes": "837f1856-1bc7-494f-a051-0a60ba069368",
+        "Crear layout de dashboard con Livewire": "a001f3ce-ae6b-4bf6-8d41-38170ca861ac",
+        "Vista global de regiones y nodos": "83302620-85ae-4e7d-83a2-3a2d0b5d1bb5",
+        "Métricas en tiempo real de colas": "94aa760d-7346-4f66-92de-eac39c70de78",
+        "Estado de servicios (RabbitMQ, Elasticsearch)": "f4335f83-5096-4483-98b9-df95c5fb74e5",
+        "Logs centralizados con búsqueda": "504f6bd3-7e3a-4baa-a50d-7df473636af8",
+        " PARADA FRONTEND: Instalar y configurar DaisyUI v5 con Tailwind v4 (no tocar CSS aún)": "496c461f-afa5-45bd-a5a2-89a0b647d798",
+        " PARADA FRONTEND: Revisar compatibilidad y orden de estilos con Livewire Flux; ajustar imports si hay conflictos": "437a14dc-b70b-4124-aef6-ff51f4ac3ade",
+        " PARADA FRONTEND: Definir temas (light/dark) y guía de uso de componentes": "5c477762-9896-4e60-9c55-97292a2b3d6a",
+        " Crear layout de dashboard con Livewire": "1489191c-5237-43aa-9e84-4b7f0a6c3640",
+        " Vista global de regiones y nodos": "febfbf71-17a8-45bf-9ea8-ad1ce35d36cc",
+        " Métricas en tiempo real de colas": "c1010abf-af4e-4845-a27c-4d3936807a55",
+        " Estado de servicios (RabbitMQ, Elasticsearch)": "a5cd0ea6-bba4-41ae-8f8b-a6a989274420",
+        " Logs centralizados con búsqueda": "f078eb5a-61ce-46fa-ae07-6f28e8e6a22f"
+      }
+    },
+    "## 💡 FASE 2: Monitorización Interna (2 semanas)": {
+      "parentId": "4d9f6d58-304d-4582-bf6a-a9417f3e6d5a",
+      "items": {}
+    },
+    "### FASE 2.1: Refactor Dominio de Monitores (2 semanas)": {
+      "parentId": "8839fb83-88c8-4c6f-bcc2-f047895c3022",
+      "items": {
+        "Observabilidad / ILM": "4a20b486-621b-4ecb-9929-884bc958c854",
+        "Definir ILM por plan (p.ej. 30/90/365 días) y aplicarlo a `{dataset}-results-{plan}-{region}`": "10996196-3b5d-4a45-a692-566efb50d67a",
+        "Crear/actualizar templates y policies": "920efc34-f6b4-4b3f-b756-2026decf109a",
+        " Definir taxonomía: `HTTP_AVAILABILITY` (Ping Web), `HOST_PING`, `KEYWORD`, `PORT`, `SSL_CERTIFICATE`, `DOMAIN_EXPIRY` (reservados: `DNS`, `CRON`)": "0ccbf952-925d-4a9f-b07b-a1f46a7bf57a",
+        " Documentación": "7c40f926-26c1-4470-8430-94d0f217cdbb",
+        "  - [x] Actualizar `docs/ARCHITECTURE.md` (tipos, frecuencias, cross‑region, retención)": "8098393a-4c1f-4aca-a305-d5b6d97c4e3b",
+        "  - [x] Actualizar `notes/analysis/informes_ia/Refactor_Monitoring_Domain.md`": "56a6769d-14a0-4bc4-aaef-bc4a267dd128",
+        "  - [x] Actualizar `docs/queue-architecture.md` (mapa tipos → colas)": "b0c93fc2-2051-4930-8171-5355a31e2ef2",
+        "  - [x] Actualizar `docs/observability.md` (datasets, campos, ILM por plan)": "470c2b57-0bb6-4562-b6ad-c8cef4826e3b",
+        " Código núcleo": "e721a735-54a9-409c-bf60-80692682e33c",
+        "  - [x] Extender `CheckType` con nuevos tipos y alias legacy (`PING`, `HTTP`)": "7540ce77-836d-4a54-aa6f-36e02675520d",
+        "  - [x] Ajustar `MonitoringService` (routing a nuevos servicios)": "6fecf9e5-a108-45d6-ba67-044d9ac1d1b6",
+        "  - [x] Crear servicios skeleton: `HostPingService`, `KeywordService`, `PortService`, `DomainService`": "9a86cfec-c883-4161-8895-810825006795",
+        "  - [x] Extender `SSLService` con expiración y metadatos (free/pago)": "eabe6af9-ce9f-40e9-abe0-c41ce2c29dfa",
+        "  - [x] Implementar lógica mínima en cada servicio (sin llamadas externas reales en tests)": "0ff22232-eaff-4d2c-80ec-cebe572ed3ef",
+        " Jobs específicos por tipo": "79ff30d0-abd1-45e1-b77d-36e38eeca586",
+        "  - [x] Crear `HttpAvailabilityJob`, `HostPingJob`, `KeywordJob`, `PortJob`, `SslCertificateJob`, `DomainExpiryJob`": "5251edc7-eede-41c7-8876-9544b1fd9bfd",
+        "  - [x] Emitir métricas a datasets ES: `http`, `host_ping`, `keyword`, `port`, `ssl`, `domain`": "5cee664f-b4f3-4289-af1c-c7fcfb018eb7",
+        "  - [x] Cross‑region: free (no), pago (sí, 1..N regiones)": "6fb9ebfb-4b8b-42a4-85b7-6bc51cf8e23f",
+        " Scheduler/Dispatch": "fb976b63-6210-42fd-9efa-4c16c872a53f",
+        "  - [x] Enforce de intervalos mínimos por plan (free: 5 min en `HTTP_AVAILABILITY`/`HOST_PING`)": "e6ce1df3-ac97-4d60-a1e3-4abb189c4eeb",
+        "  - [x] Usar `MonitoringCheck` (MySQL) para scheduling por sitio/tipo (si aplica)": "b1d877a4-1664-4c3c-9d31-17d7cc485002",
+        "  - [x] Deshabilitar en `testing`": "a7edc000-3070-4a12-8be2-6b814c4bd847",
+        " Observabilidad / ILM": "d11f3d04-c7d5-4db9-971f-5901e55f7999",
+        "  - [ ] Definir ILM por plan (p.ej. 30/90/365 días) y aplicarlo a `{dataset}-results-{plan}-{region}`": "68df0e9d-14b5-4b54-a2d5-95c2b766d8dd",
+        "  - [ ] Crear/actualizar templates y policies": "b8cd22bd-3eea-42e3-8470-32fed3567370",
+        " Regionalidad dinámica": "79c9c24f-6d17-45d9-93e9-ce6b0644078f",
+        "  - [x] `NodeHealthService`: usar `Region` activa desde DB (eliminar hardcodes)": "70c019cc-5b29-40f5-b59f-4f3711fb2966",
+        " Compatibilidad y limpieza": "7be652e5-00cd-45f7-93c4-ed85a2552263",
+        "  - [x] Deprecar `CheckType::PING`/`HTTP` en favor de `HTTP_AVAILABILITY` (ajustar tests)": "47c86f90-d9ee-4a46-89d9-e60b39220d0c",
+        "  - [x] Revisar referencias en tests/unidades a `CheckType::HTTP`": "e2cdda1a-9cd9-4a45-9e7a-ec8863301b6d",
+        " Tests (Pest)": "147344a1-040f-4b5c-96ab-98db71e52fda",
+        "  - [x] Unit: mapeo `CheckType` → servicios en `MonitoringService`": "c5339c18-8722-4e64-b617-cc2d0a9f4921",
+        "  - [x] Unit/Integration: cada servicio y job con stubs y asserts de cola/dataset (parcial, ES integration en skip)": "e463e658-21a4-44aa-a265-243c4991f8c8",
+        "  - [x] Validar shape de documentos ES por dataset y plan (parcial; docs completados, tests ES en skip)": "0a34bb4d-8c34-43fa-b587-0268a92c2a2b",
+        " Documentación extra": "a5bc8b09-16c8-4fc0-b19c-9be56da7bb5d",
+        "  - [x] `docs/data-model.md`: `MonitoringCheck` (gestión)": "a997c62a-3e8c-409b-979f-b51b4be7df23",
+        "  - [x] `docs/queue-architecture.md`: completar con rutas por región y prioridad": "4e5a820a-3fff-4cd9-86e1-cd5b52aa2e68",
+        "  - [x] `docs/observability.md`: datasets y retención": "8f9f6289-0c8d-4fb6-8524-24019cf3d54c"
+      }
+    },
+    "### Servicios de Monitorización": {
+      "parentId": "4852e2c1-50cd-4f73-a538-478850417e62",
+      "items": {
+        "Implementar `MonitoringService` real (reemplazar MockResult)": "63741ca6-fc89-4e2d-90c9-62c64375c69e",
+        " Crear `NodeConfigService` para gestión de configuración híbrida": "3862d28e-6db6-48c8-b395-4024f7e982e7",
+        " Implementar `MonitoringService` real (reemplazar MockResult)": "a0452420-a997-406b-b143-efbf4872714c",
+        "  - [x] PingService con métricas reales": "b8593312-e89b-48f2-b8f2-490f17a52436",
+        "  - [x] HttpService con TTFB y tiempos detallados": "7ad42a69-c7ed-429a-8cd2-f1dfda5d84ea",
+        "  - [x] SSLService para certificados (placeholder básico)": "d57a749a-4809-4cb5-a5bf-a66499629a34",
+        " Crear `NodeHealthService` para health checks internos": "00dae499-1c3a-47aa-80da-61a90daf0b60",
+        " Implementar `CrossRegionValidator` para verificaciones cruzadas": "47fda070-730d-4d99-bb6a-1e57a8031abd"
+      }
+    },
+    "### Jobs de Monitorización": {
+      "parentId": "473f0407-3e9c-48b7-89a0-930bf32c0b91",
+      "items": {
+        " Crear `NodeHealthCheckJob` (scheduled)": "16fccfd7-ca49-4b79-a101-adce8225030c",
+        " Crear `ServiceHealthCheckJob` para RabbitMQ/Elasticsearch": "f0f5198e-c643-4e6c-b97d-71cc3cb26c1f",
+        " Actualizar `MonitoringJob` para usar servicios reales": "f99e2e67-12b7-47ef-b3ac-e2b3a98c47c7",
+        " Implementar sistema de alertas básico": "21f8fec3-26ce-432a-9623-dda6de2582ca"
+      }
+    },
+    "### Supervisor": {
+      "parentId": "ca7981ad-dcde-4fd2-926e-cb8616df2e19",
+      "items": {
+        " Configurar Supervisor en entorno local (macOS con Homebrew)": "8bc04113-158c-4f4c-afad-b015aaf0e124",
+        " Crear archivo de configuración en `/usr/local/etc/supervisor.d/baytamin.ini`": "1069597b-1bde-471e-9e9e-f99a3dd582df",
+        " Configurar procesos para las colas EU (desarrollo local)": "aead1e8c-d721-4ff7-ba73-464ef27ad3bf",
+        " Documentar comandos para gestión de workers con Supervisor": "8e87e086-490f-4a49-9993-b3c120ce04e6",
+        " Implementar rotación de logs para archivos de Supervisor": "07099872-b081-40b4-b84b-d85fad35021f"
+      }
+    },
+    "### RabbitMQ": {
+      "parentId": "d98c6d5f-b469-46ba-ac84-639c66fbc6b6",
+      "items": {
+        "Configurar monitorización de colas": "6ea6276a-0b37-4b81-9d27-15ba8ec2f64d",
+        " Documentar proceso de configuración manual de archivos `.env*`": "e5dc9f34-0c4c-475c-9606-82a870905245",
+        " Crear script para validar configuración de RabbitMQ": "9d716b0c-6407-41d5-a8c8-20d3dd2107b1",
+        " Implementar health checks para los nodos de RabbitMQ": "1781fbf2-10cb-49cf-b8f4-56593d649beb",
+        " Configurar monitorización de colas": "22995233-f3ec-4c48-91d5-025c668e3ad4",
+        " Iniciar contenedores Docker de RabbitMQ para ASIA y US (actualmente detenidos)": "720ac55b-3e66-4c0b-a942-669958c9bcdc"
+      }
+    },
+    "### Comandos de Gestión de Nodos": {
+      "parentId": "1debe5fc-9700-4e12-ba6f-0a33e2bd9cd6",
+      "items": {
+        " Implementar `php artisan node:register`": "317ce8ef-4be4-4b8b-bc5b-389a3b2371d9",
+        " Implementar `php artisan node:info`": "a4a613e8-efc5-4aff-80d9-b1a733d57f75",
+        " Implementar `php artisan node:health`": "c98506a7-d9dc-45de-8141-2fdd0df16375",
+        " Implementar `php artisan region:create`": "58894096-6615-49c7-8cad-47ec468630f8"
+      }
+    },
+    "# TODO: Elasticsearch Integration": {
+      "parentId": "5ae3fe12-e336-45ad-a69d-092c9e58f048",
+      "items": {
+        "logs/rabbit-health.log fuera de la estrcura de logs de laravel.": "e4d22516-219b-4eb7-8cd8-cfd00b3eeba9",
+        " logs/rabbit-health.log fuera de la estrcura de logs de laravel.": "b95ff2de-58f9-4fdd-bbc6-60cb679bcac4"
+      }
+    }
+  }
+}

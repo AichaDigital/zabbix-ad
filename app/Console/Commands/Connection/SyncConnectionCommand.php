@@ -61,7 +61,8 @@ class SyncConnectionCommand extends Command
                     $this->info('  → ✓ Success');
                     $successCount++;
                 } else {
-                    $this->error('  → ✗ Failed: '.(is_scalar($result['error']) ? (string) $result['error'] : 'Unknown error'));
+                    $error = $result['error'] ?? 'Unknown error';
+                    $this->error('  → ✗ Failed: '.(string) $error);
                 }
             }
         }
@@ -111,8 +112,8 @@ class SyncConnectionCommand extends Command
             $this->newLine(2);
 
             $this->info('✓ Sync completed successfully!');
-            $this->line('Templates synced: '.(is_scalar($templateResult['synced']) ? (string) $templateResult['synced'] : '0').' (errors: '.(is_scalar($templateResult['errors']) ? (string) $templateResult['errors'] : '0').')');
-            $this->line('Hosts synced: '.(is_scalar($hostResult['synced']) ? (string) $hostResult['synced'] : '0').' (errors: '.(is_scalar($hostResult['errors']) ? (string) $hostResult['errors'] : '0').')');
+            $this->line('Templates synced: '.(string) $templateResult['synced'].' (errors: '.(string) $templateResult['errors'].')');
+            $this->line('Hosts synced: '.(string) $hostResult['synced'].' (errors: '.(string) $hostResult['errors'].')');
 
             return self::SUCCESS;
 
@@ -144,7 +145,7 @@ class SyncConnectionCommand extends Command
     }
 
     /**
-     * @return array<string, mixed>
+     * @return array{success: bool, result?: mixed, error?: string}
      */
     private function syncConnectionSilent(ZabbixConnection $connection): array
     {

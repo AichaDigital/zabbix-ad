@@ -43,7 +43,8 @@ class OptimizeTemplatesJob implements ShouldQueue
         $this->connection = $connection;
         $this->template = $template;
         $this->autoOptimize = $autoOptimize;
-        $this->onQueue((string) config('zabbix.jobs.queue', 'default'));
+        $queueName = config('zabbix.jobs.queue', 'default');
+        $this->onQueue(is_string($queueName) ? $queueName : 'default');
     }
 
     /**
@@ -108,6 +109,10 @@ class OptimizeTemplatesJob implements ShouldQueue
         }
 
         $this->updateProgress(20, 'Analyzing template...');
+
+        if ($this->template === null) {
+            throw new \Exception('Template is required for optimization');
+        }
 
         $analysis = $service->analyzeTemplate($this->template);
 

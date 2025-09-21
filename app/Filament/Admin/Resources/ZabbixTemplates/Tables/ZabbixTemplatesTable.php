@@ -22,9 +22,9 @@ class ZabbixTemplatesTable
                     ->sortable(),
                 BadgeColumn::make('template_type')
                     ->colors([
-                        'primary' => 'custom',
-                        'success' => 'system',
-                        'warning' => 'imported',
+                        'primary' => fn (string $state): bool => $state === 'custom',
+                        'success' => fn (string $state): bool => $state === 'system',
+                        'warning' => fn (string $state): bool => $state === 'imported',
                     ])
                     ->sortable(),
                 TextColumn::make('items_count')

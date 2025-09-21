@@ -84,7 +84,7 @@ class CreateTemplateJob implements ShouldQueue
 
             $templateService = new TemplateManagementService($this->connection);
 
-            if ($this->sourceTemplate) {
+            if ($this->sourceTemplate !== null) {
                 $this->updateProgress(20, 'Creating template from existing template...');
                 $result = $templateService->createTemplateFromExisting($this->sourceTemplate, $this->templateData);
             } else {

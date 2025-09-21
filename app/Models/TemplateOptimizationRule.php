@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class TemplateOptimizationRule extends Model
@@ -24,6 +25,9 @@ class TemplateOptimizationRule extends Model
 
     /**
      * Scope for active rules
+     *
+     * @param  Builder<TemplateOptimizationRule>  $query
+     * @return Builder<TemplateOptimizationRule>
      */
     public function scopeActive(Builder $query): Builder
     {
@@ -32,10 +36,13 @@ class TemplateOptimizationRule extends Model
 
     /**
      * Scope for rules by environment
+     *
+     * @param  Builder<TemplateOptimizationRule>  $query
+     * @return Builder<TemplateOptimizationRule>
      */
     public function scopeByEnvironment(Builder $query, string $environment): Builder
     {
-        return $query->where(function ($q) use ($environment) {
+        return $query->where(function (Builder $q) use ($environment): void {
             $q->where('environment', 'all')
                 ->orWhere('environment', $environment);
         });
@@ -43,10 +50,13 @@ class TemplateOptimizationRule extends Model
 
     /**
      * Scope for rules matching template pattern
+     *
+     * @param  Builder<TemplateOptimizationRule>  $query
+     * @return Builder<TemplateOptimizationRule>
      */
     public function scopeMatchingTemplate(Builder $query, string $templateName): Builder
     {
-        return $query->where(function ($q) use ($templateName) {
+        return $query->where(function (Builder $q) use ($templateName): void {
             $q->whereNull('template_pattern')
                 ->orWhere('template_pattern', '')
                 ->orWhereRaw('? LIKE template_pattern', [$templateName]);
@@ -79,6 +89,8 @@ class TemplateOptimizationRule extends Model
 
     /**
      * Get optimization settings for a template
+     *
+     * @return array<string, mixed>
      */
     public function getOptimizationSettings(): array
     {
@@ -92,6 +104,8 @@ class TemplateOptimizationRule extends Model
 
     /**
      * Calculate potential savings
+     *
+     * @return array<string, mixed>
      */
     public function getPotentialSavings(): array
     {
@@ -141,6 +155,8 @@ class TemplateOptimizationRule extends Model
 
     /**
      * Get rule summary
+     *
+     * @return array<string, mixed>
      */
     public function getSummary(): array
     {
